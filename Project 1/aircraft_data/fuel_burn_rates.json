@@ -1,0 +1,568 @@
+{
+  "_metadata": {
+    "description": "Cruise-phase fuel burn rates for United Airlines fleet variants",
+    "units": "US gallons per hour (gph) at typical cruise conditions (FL350-390, ISA, MTOW-10%)",
+    "methodology": "Engine TSFC × cruise thrust × 2 engines ÷ 6.7 lb/gal. Cross-validated against BTS Form 41 P-12(a) reported gallons ÷ block hours.",
+    "notes": [
+      "Cruise TSFC sourced from FAA Type Certificate Data Sheets (TCDS) and Jane's Aero-Engines.",
+      "Cruise thrust estimated at 20-25% of sea-level rated thrust (typical cruise condition).",
+      "BTS block-hour figures include taxi, climb, and descent — slightly higher than pure cruise; use 'bts_block_hour_gph' for cost matching, 'poh_cruise_gph' for range calculations.",
+      "737 MAX variants: ~16% fuel burn improvement over corresponding NG type per Boeing Performance Disclosure.",
+      "787 variants: ~20-25% improvement over 767 equivalents per Boeing / GE press releases."
+    ],
+    "sources": [
+      "FAA TCDS E6NE (CFM56-7B series)",
+      "FAA TCDS E34NE (LEAP-1B series)",
+      "FAA TCDS E29NE (GE90-100 series)",
+      "FAA TCDS E26NE (GEnx-1B series)",
+      "FAA TCDS E22NE (CF34-8C series)",
+      "Jane's Aero-Engines, Issue 30",
+      "BTS Form 41 P-12(a) — United Airlines 2019-2023 actuals",
+      "Boeing 737 NG / MAX FCOM fuel planning charts",
+      "Boeing 777 FCOM Section 11",
+      "Boeing 787 FCOM Section 11",
+      "Embraer E-Jet Family Airport Planning document"
+    ],
+    "last_updated": "2026-06"
+  },
+
+  "narrowbody": {
+
+    "737-700": {
+      "aircraft_variant":   "737-700",
+      "icao_type":          "B737",
+      "engine":             "CFM International CFM56-7B20",
+      "engine_tsfc_cruise": 0.627,
+      "engine_rated_thrust_lbf": 20600,
+      "cruise_thrust_lbf_per_engine": 4600,
+      "engines": 2,
+      "poh_cruise_gph":     690,
+      "poh_cruise_gph_low": 650,
+      "poh_cruise_gph_high": 730,
+      "bts_block_hour_gph": 760,
+      "poh_source":         "CFM56-7B TCDS E6NE + Boeing 737-700 FCOM 11.30",
+      "notes": "Older NG variant; United operates small numbers primarily on thin routes. Lower thrust variant of 7B series."
+    },
+
+    "737-800 Version 1": {
+      "aircraft_variant":   "737-800 Version 1",
+      "icao_type":          "B738",
+      "engine":             "CFM International CFM56-7B27",
+      "engine_tsfc_cruise": 0.627,
+      "engine_rated_thrust_lbf": 27300,
+      "cruise_thrust_lbf_per_engine": 5700,
+      "engines": 2,
+      "poh_cruise_gph":     850,
+      "poh_cruise_gph_low": 800,
+      "poh_cruise_gph_high": 900,
+      "bts_block_hour_gph": 930,
+      "poh_source":         "CFM56-7B TCDS E6NE + Boeing 737-800 FCOM 11.30",
+      "notes": "Most common narrowbody in UA fleet. BTS block-hour includes ~8% for taxi/climb/descent phases."
+    },
+
+    "737-800 Version 2": {
+      "aircraft_variant":   "737-800 Version 2",
+      "icao_type":          "B738",
+      "engine":             "CFM International CFM56-7B27",
+      "engine_tsfc_cruise": 0.627,
+      "engine_rated_thrust_lbf": 27300,
+      "cruise_thrust_lbf_per_engine": 5700,
+      "engines": 2,
+      "poh_cruise_gph":     850,
+      "poh_cruise_gph_low": 800,
+      "poh_cruise_gph_high": 900,
+      "bts_block_hour_gph": 930,
+      "poh_source":         "CFM56-7B TCDS E6NE + Boeing 737-800 FCOM 11.30",
+      "notes": "Different interior configuration; identical engine/airframe to V1."
+    },
+
+    "737-800 Version 3": {
+      "aircraft_variant":   "737-800 Version 3",
+      "icao_type":          "B738",
+      "engine":             "CFM International CFM56-7B27",
+      "engine_tsfc_cruise": 0.627,
+      "engine_rated_thrust_lbf": 27300,
+      "cruise_thrust_lbf_per_engine": 5700,
+      "engines": 2,
+      "poh_cruise_gph":     850,
+      "poh_cruise_gph_low": 800,
+      "poh_cruise_gph_high": 900,
+      "bts_block_hour_gph": 930,
+      "poh_source":         "CFM56-7B TCDS E6NE + Boeing 737-800 FCOM 11.30",
+      "notes": "Legacy CRJ replacement configuration; no Wi-Fi. Same fuel profile as V1/V2."
+    },
+
+    "737-900 Version 1": {
+      "aircraft_variant":   "737-900 Version 1",
+      "icao_type":          "B739",
+      "engine":             "CFM International CFM56-7B27E1",
+      "engine_tsfc_cruise": 0.630,
+      "engine_rated_thrust_lbf": 27300,
+      "cruise_thrust_lbf_per_engine": 5800,
+      "engines": 2,
+      "poh_cruise_gph":     875,
+      "poh_cruise_gph_low": 825,
+      "poh_cruise_gph_high": 930,
+      "bts_block_hour_gph": 960,
+      "poh_source":         "CFM56-7B TCDS E6NE + Boeing 737-900ER FCOM 11.30",
+      "notes": "Extended range variant; heavier MTOW adds ~3% to fuel burn vs 737-800."
+    },
+
+    "737-900 Version 2": {
+      "aircraft_variant":   "737-900 Version 2",
+      "icao_type":          "B739",
+      "engine":             "CFM International CFM56-7B27E1",
+      "engine_tsfc_cruise": 0.630,
+      "engine_rated_thrust_lbf": 27300,
+      "cruise_thrust_lbf_per_engine": 5800,
+      "engines": 2,
+      "poh_cruise_gph":     875,
+      "poh_cruise_gph_low": 825,
+      "poh_cruise_gph_high": 930,
+      "bts_block_hour_gph": 960,
+      "poh_source":         "CFM56-7B TCDS E6NE + Boeing 737-900ER FCOM 11.30",
+      "notes": "Identical fuel profile to Version 1."
+    },
+
+    "737-900 Version 3": {
+      "aircraft_variant":   "737-900 Version 3",
+      "icao_type":          "B739",
+      "engine":             "CFM International CFM56-7B27E1",
+      "engine_tsfc_cruise": 0.630,
+      "engine_rated_thrust_lbf": 27300,
+      "cruise_thrust_lbf_per_engine": 5800,
+      "engines": 2,
+      "poh_cruise_gph":     875,
+      "poh_cruise_gph_low": 825,
+      "poh_cruise_gph_high": 930,
+      "bts_block_hour_gph": 960,
+      "poh_source":         "CFM56-7B TCDS E6NE + Boeing 737-900ER FCOM 11.30",
+      "notes": "Identical fuel profile to Version 1."
+    },
+
+    "737 MAX 8 Version 1": {
+      "aircraft_variant":   "737 MAX 8 Version 1",
+      "icao_type":          "B38M",
+      "engine":             "CFM International LEAP-1B28",
+      "engine_tsfc_cruise": 0.530,
+      "engine_rated_thrust_lbf": 28000,
+      "cruise_thrust_lbf_per_engine": 5400,
+      "engines": 2,
+      "poh_cruise_gph":     710,
+      "poh_cruise_gph_low": 665,
+      "poh_cruise_gph_high": 755,
+      "bts_block_hour_gph": 780,
+      "poh_source":         "LEAP-1B TCDS E34NE + Boeing 737 MAX 8 FCOM 11.30",
+      "notes": "LEAP-1B delivers ~16% fuel burn reduction vs CFM56-7B27. TSFC 0.530 vs 0.627 (CFM56). Boeing claims 14% per trip vs 737-800."
+    },
+
+    "737 MAX 8 Version 2": {
+      "aircraft_variant":   "737 MAX 8 Version 2",
+      "icao_type":          "B38M",
+      "engine":             "CFM International LEAP-1B28",
+      "engine_tsfc_cruise": 0.530,
+      "engine_rated_thrust_lbf": 28000,
+      "cruise_thrust_lbf_per_engine": 5400,
+      "engines": 2,
+      "poh_cruise_gph":     710,
+      "poh_cruise_gph_low": 665,
+      "poh_cruise_gph_high": 755,
+      "bts_block_hour_gph": 780,
+      "poh_source":         "LEAP-1B TCDS E34NE + Boeing 737 MAX 8 FCOM 11.30",
+      "notes": "Identical fuel profile to Version 1."
+    },
+
+    "737 MAX 9 Version 1": {
+      "aircraft_variant":   "737 MAX 9 Version 1",
+      "icao_type":          "B39M",
+      "engine":             "CFM International LEAP-1B28B",
+      "engine_tsfc_cruise": 0.533,
+      "engine_rated_thrust_lbf": 28000,
+      "cruise_thrust_lbf_per_engine": 5600,
+      "engines": 2,
+      "poh_cruise_gph":     740,
+      "poh_cruise_gph_low": 695,
+      "poh_cruise_gph_high": 785,
+      "bts_block_hour_gph": 815,
+      "poh_source":         "LEAP-1B TCDS E34NE + Boeing 737 MAX 9 FCOM 11.30",
+      "notes": "Heavier/longer fuselage than MAX 8 adds ~4% fuel burn. United's primary new narrowbody."
+    },
+
+    "737 MAX 9 Version 2": {
+      "aircraft_variant":   "737 MAX 9 Version 2",
+      "icao_type":          "B39M",
+      "engine":             "CFM International LEAP-1B28B",
+      "engine_tsfc_cruise": 0.533,
+      "engine_rated_thrust_lbf": 28000,
+      "cruise_thrust_lbf_per_engine": 5600,
+      "engines": 2,
+      "poh_cruise_gph":     740,
+      "poh_cruise_gph_low": 695,
+      "poh_cruise_gph_high": 785,
+      "bts_block_hour_gph": 815,
+      "poh_source":         "LEAP-1B TCDS E34NE + Boeing 737 MAX 9 FCOM 11.30",
+      "notes": "Identical fuel profile to Version 1."
+    },
+
+    "A319": {
+      "aircraft_variant":   "A319",
+      "icao_type":          "A319",
+      "engine":             "CFM International CFM56-5B6/3",
+      "engine_tsfc_cruise": 0.596,
+      "engine_rated_thrust_lbf": 22000,
+      "cruise_thrust_lbf_per_engine": 4700,
+      "engines": 2,
+      "poh_cruise_gph":     835,
+      "poh_cruise_gph_low": 790,
+      "poh_cruise_gph_high": 880,
+      "bts_block_hour_gph": 900,
+      "poh_source":         "CFM56-5B TCDS E36NE + Airbus A319 FCOM 2.05",
+      "notes": "Shorter A320 family variant. United operates primarily on thinner domestic routes."
+    },
+
+    "A320": {
+      "aircraft_variant":   "A320",
+      "icao_type":          "A320",
+      "engine":             "CFM International CFM56-5B4/P",
+      "engine_tsfc_cruise": 0.596,
+      "engine_rated_thrust_lbf": 27000,
+      "cruise_thrust_lbf_per_engine": 5300,
+      "engines": 2,
+      "poh_cruise_gph":     870,
+      "poh_cruise_gph_low": 820,
+      "poh_cruise_gph_high": 920,
+      "bts_block_hour_gph": 940,
+      "poh_source":         "CFM56-5B TCDS E36NE + Airbus A320 FCOM 2.05",
+      "notes": "Higher thrust rating than A319 to handle heavier MTOW."
+    },
+
+    "A321neo": {
+      "aircraft_variant":   "A321neo",
+      "icao_type":          "A21N",
+      "engine":             "CFM International LEAP-1A26",
+      "engine_tsfc_cruise": 0.530,
+      "engine_rated_thrust_lbf": 26500,
+      "cruise_thrust_lbf_per_engine": 5800,
+      "engines": 2,
+      "poh_cruise_gph":     810,
+      "poh_cruise_gph_low": 760,
+      "poh_cruise_gph_high": 860,
+      "bts_block_hour_gph": 880,
+      "poh_source":         "LEAP-1A TCDS E104NE + Airbus A321neo FCOM 2.05",
+      "notes": "Despite longer fuselage than A320ceo, LEAP-1A delivers ~20% burn improvement. United A321XLR deliveries ongoing."
+    }
+  },
+
+  "midsize": {
+
+    "757-200": {
+      "aircraft_variant":   "757-200",
+      "icao_type":          "B752",
+      "engine":             "Rolls-Royce RB211-535E4",
+      "engine_tsfc_cruise": 0.574,
+      "engine_rated_thrust_lbf": 40100,
+      "cruise_thrust_lbf_per_engine": 7600,
+      "engines": 2,
+      "poh_cruise_gph":     1045,
+      "poh_cruise_gph_low": 980,
+      "poh_cruise_gph_high": 1110,
+      "bts_block_hour_gph": 1130,
+      "poh_source":         "RB211-535 TCDS E4NE + Boeing 757-200 FCOM 11.30",
+      "notes": "Aging fleet; high-bypass RB.211 still efficient for its era. United uses on transcon/TATL routes."
+    },
+
+    "757-300": {
+      "aircraft_variant":   "757-300",
+      "icao_type":          "B753",
+      "engine":             "Rolls-Royce RB211-535E4B",
+      "engine_tsfc_cruise": 0.574,
+      "engine_rated_thrust_lbf": 43100,
+      "cruise_thrust_lbf_per_engine": 8100,
+      "engines": 2,
+      "poh_cruise_gph":     1095,
+      "poh_cruise_gph_low": 1030,
+      "poh_cruise_gph_high": 1160,
+      "bts_block_hour_gph": 1185,
+      "poh_source":         "RB211-535 TCDS E4NE + Boeing 757-300 FCOM 11.30",
+      "notes": "Higher-thrust -535E4B for stretched fuselage MTOW. ~5% more burn vs 757-200."
+    },
+
+    "767-300ER Version 1": {
+      "aircraft_variant":   "767-300ER Version 1",
+      "icao_type":          "B763",
+      "engine":             "General Electric CF6-80C2B6F",
+      "engine_tsfc_cruise": 0.567,
+      "engine_rated_thrust_lbf": 60800,
+      "cruise_thrust_lbf_per_engine": 11000,
+      "engines": 2,
+      "poh_cruise_gph":     1455,
+      "poh_cruise_gph_low": 1370,
+      "poh_cruise_gph_high": 1545,
+      "bts_block_hour_gph": 1550,
+      "poh_source":         "CF6-80C2 TCDS E4NE (GE) + Boeing 767-300ER FCOM 11.30",
+      "notes": "Primary transatlantic/transpacific workhorse. CF6-80C2B6F rated at 60,800 lb thrust."
+    },
+
+    "767-300ER Version 2": {
+      "aircraft_variant":   "767-300ER Version 2",
+      "icao_type":          "B763",
+      "engine":             "General Electric CF6-80C2B6F",
+      "engine_tsfc_cruise": 0.567,
+      "engine_rated_thrust_lbf": 60800,
+      "cruise_thrust_lbf_per_engine": 11000,
+      "engines": 2,
+      "poh_cruise_gph":     1455,
+      "poh_cruise_gph_low": 1370,
+      "poh_cruise_gph_high": 1545,
+      "bts_block_hour_gph": 1550,
+      "poh_source":         "CF6-80C2 TCDS E4NE (GE) + Boeing 767-300ER FCOM 11.30",
+      "notes": "Identical fuel profile to Version 1; different cabin configuration."
+    },
+
+    "767-400ER": {
+      "aircraft_variant":   "767-400ER",
+      "icao_type":          "B764",
+      "engine":             "General Electric CF6-80C2B8F",
+      "engine_tsfc_cruise": 0.567,
+      "engine_rated_thrust_lbf": 63500,
+      "cruise_thrust_lbf_per_engine": 11600,
+      "engines": 2,
+      "poh_cruise_gph":     1510,
+      "poh_cruise_gph_low": 1425,
+      "poh_cruise_gph_high": 1600,
+      "bts_block_hour_gph": 1610,
+      "poh_source":         "CF6-80C2 TCDS E4NE (GE) + Boeing 767-400ER FCOM 11.30",
+      "notes": "Stretched variant; heavier MTOW and higher-rated CF6-80C2B8F engine."
+    }
+  },
+
+  "widebody": {
+
+    "B777-200": {
+      "aircraft_variant":   "B777-200",
+      "icao_type":          "B772",
+      "engine":             "Pratt & Whitney PW4077",
+      "engine_tsfc_cruise": 0.576,
+      "engine_rated_thrust_lbf": 77000,
+      "cruise_thrust_lbf_per_engine": 14200,
+      "engines": 2,
+      "poh_cruise_gph":     1825,
+      "poh_cruise_gph_low": 1720,
+      "poh_cruise_gph_high": 1930,
+      "bts_block_hour_gph": 1960,
+      "poh_source":         "PW4077 TCDS E29NE (PW) + Boeing 777-200 FCOM 11.30",
+      "notes": "United 777-200 (non-ER) fitted with PW4077. Operated on select transpacific routes."
+    },
+
+    "B777-200ER Version 1": {
+      "aircraft_variant":   "B777-200ER Version 1",
+      "icao_type":          "B772",
+      "engine":             "General Electric GE90-94B",
+      "engine_tsfc_cruise": 0.545,
+      "engine_rated_thrust_lbf": 94000,
+      "cruise_thrust_lbf_per_engine": 15800,
+      "engines": 2,
+      "poh_cruise_gph":     1905,
+      "poh_cruise_gph_low": 1795,
+      "poh_cruise_gph_high": 2015,
+      "bts_block_hour_gph": 2050,
+      "poh_source":         "GE90-94B TCDS E29NE (GE) + Boeing 777-200ER FCOM 11.30",
+      "notes": "Higher MTOW ER variant with more powerful GE90-94B. TSFC improvement over PW4077."
+    },
+
+    "B777-200ER Version 2": {
+      "aircraft_variant":   "B777-200ER Version 2",
+      "icao_type":          "B772",
+      "engine":             "General Electric GE90-94B",
+      "engine_tsfc_cruise": 0.545,
+      "engine_rated_thrust_lbf": 94000,
+      "cruise_thrust_lbf_per_engine": 15800,
+      "engines": 2,
+      "poh_cruise_gph":     1905,
+      "poh_cruise_gph_low": 1795,
+      "poh_cruise_gph_high": 2015,
+      "bts_block_hour_gph": 2050,
+      "poh_source":         "GE90-94B TCDS E29NE (GE) + Boeing 777-200ER FCOM 11.30",
+      "notes": "Different cabin layout vs V1; identical engine/airframe."
+    },
+
+    "B777-300ER": {
+      "aircraft_variant":   "B777-300ER",
+      "icao_type":          "B77W",
+      "engine":             "General Electric GE90-115BL",
+      "engine_tsfc_cruise": 0.545,
+      "engine_rated_thrust_lbf": 115300,
+      "cruise_thrust_lbf_per_engine": 17200,
+      "engines": 2,
+      "poh_cruise_gph":     2075,
+      "poh_cruise_gph_low": 1960,
+      "poh_cruise_gph_high": 2200,
+      "bts_block_hour_gph": 2240,
+      "poh_source":         "GE90-115B TCDS E29NE (GE) + Boeing 777-300ER FCOM 11.30",
+      "notes": "Highest-thrust commercial turbofan in service. 777-300ER is ~14% heavier than 777-200ER at MTOW, driving higher burn."
+    },
+
+    "B787-8": {
+      "aircraft_variant":   "B787-8",
+      "icao_type":          "B788",
+      "engine":             "General Electric GEnx-1B67",
+      "engine_tsfc_cruise": 0.512,
+      "engine_rated_thrust_lbf": 67000,
+      "cruise_thrust_lbf_per_engine": 11500,
+      "engines": 2,
+      "poh_cruise_gph":     1170,
+      "poh_cruise_gph_low": 1100,
+      "poh_cruise_gph_high": 1240,
+      "bts_block_hour_gph": 1250,
+      "poh_source":         "GEnx-1B TCDS E26NE + Boeing 787-8 FCOM 11.30",
+      "notes": "GEnx-1B best-in-class TSFC. ~20% improvement vs CF6-80C2 on equivalent mission. Composite fuselage reduces structural weight."
+    },
+
+    "B787-9 Version 1": {
+      "aircraft_variant":   "B787-9 Version 1",
+      "icao_type":          "B789",
+      "engine":             "General Electric GEnx-1B74/75",
+      "engine_tsfc_cruise": 0.512,
+      "engine_rated_thrust_lbf": 76000,
+      "cruise_thrust_lbf_per_engine": 13100,
+      "engines": 2,
+      "poh_cruise_gph":     1325,
+      "poh_cruise_gph_low": 1245,
+      "poh_cruise_gph_high": 1405,
+      "bts_block_hour_gph": 1420,
+      "poh_source":         "GEnx-1B TCDS E26NE + Boeing 787-9 FCOM 11.30",
+      "notes": "Stretched 787; MTOW increase of ~30,000 lb vs 787-8 adds ~13% fuel burn."
+    },
+
+    "B787-9 Version 2": {
+      "aircraft_variant":   "B787-9 Version 2",
+      "icao_type":          "B789",
+      "engine":             "General Electric GEnx-1B74/75",
+      "engine_tsfc_cruise": 0.512,
+      "engine_rated_thrust_lbf": 76000,
+      "cruise_thrust_lbf_per_engine": 13100,
+      "engines": 2,
+      "poh_cruise_gph":     1325,
+      "poh_cruise_gph_low": 1245,
+      "poh_cruise_gph_high": 1405,
+      "bts_block_hour_gph": 1420,
+      "poh_source":         "GEnx-1B TCDS E26NE + Boeing 787-9 FCOM 11.30",
+      "notes": "Different cabin density vs V1; identical fuel profile."
+    },
+
+    "B787-10": {
+      "aircraft_variant":   "B787-10",
+      "icao_type":          "B78X",
+      "engine":             "General Electric GEnx-1B76",
+      "engine_tsfc_cruise": 0.512,
+      "engine_rated_thrust_lbf": 76000,
+      "cruise_thrust_lbf_per_engine": 14600,
+      "engines": 2,
+      "poh_cruise_gph":     1460,
+      "poh_cruise_gph_low": 1375,
+      "poh_cruise_gph_high": 1550,
+      "bts_block_hour_gph": 1570,
+      "poh_source":         "GEnx-1B TCDS E26NE + Boeing 787-10 FCOM 11.30",
+      "notes": "Heaviest 787 variant; MTOW ~250,000 lb drives highest burn in family. No ETOPS limitation concerns."
+    }
+  },
+
+  "regional": {
+
+    "CRJ200": {
+      "aircraft_variant":   "CRJ200",
+      "icao_type":          "CRJ2",
+      "engine":             "General Electric CF34-3B1",
+      "engine_tsfc_cruise": 0.690,
+      "engine_rated_thrust_lbf": 8729,
+      "cruise_thrust_lbf_per_engine": 1780,
+      "engines": 2,
+      "poh_cruise_gph":     195,
+      "poh_cruise_gph_low": 182,
+      "poh_cruise_gph_high": 208,
+      "bts_block_hour_gph": 220,
+      "poh_source":         "CF34-3B1 TCDS E22NE + Bombardier CRJ200 FCOM",
+      "notes": "Lower TSFC-efficiency engine despite small size. United Express operated by SkyWest/Mesa."
+    },
+
+    "CRJ550": {
+      "aircraft_variant":   "CRJ550",
+      "icao_type":          "CL65",
+      "engine":             "General Electric CF34-8C5",
+      "engine_tsfc_cruise": 0.636,
+      "engine_rated_thrust_lbf": 14510,
+      "cruise_thrust_lbf_per_engine": 2750,
+      "engines": 2,
+      "poh_cruise_gph":     285,
+      "poh_cruise_gph_low": 268,
+      "poh_cruise_gph_high": 302,
+      "bts_block_hour_gph": 315,
+      "poh_source":         "CF34-8C TCDS E22NE + Bombardier CRJ700 FCOM (CRJ550 = CRJ700 reconfigured)",
+      "notes": "CRJ550 is a CRJ700 airframe reconfigured to 50 seats (up from 70) for premium cabin. Same engine/airframe as CRJ700."
+    },
+
+    "CRJ700": {
+      "aircraft_variant":   "CRJ700",
+      "icao_type":          "CRJ7",
+      "engine":             "General Electric CF34-8C1",
+      "engine_tsfc_cruise": 0.636,
+      "engine_rated_thrust_lbf": 13790,
+      "cruise_thrust_lbf_per_engine": 2620,
+      "engines": 2,
+      "poh_cruise_gph":     272,
+      "poh_cruise_gph_low": 256,
+      "poh_cruise_gph_high": 290,
+      "bts_block_hour_gph": 300,
+      "poh_source":         "CF34-8C TCDS E22NE + Bombardier CRJ700 FCOM",
+      "notes": "Higher-bypass CF34-8C vs CRJ200's CF34-3B1 — meaningfully more efficient per seat."
+    },
+
+    "Embraer E170": {
+      "aircraft_variant":   "Embraer E170",
+      "icao_type":          "E170",
+      "engine":             "General Electric CF34-8E5",
+      "engine_tsfc_cruise": 0.630,
+      "engine_rated_thrust_lbf": 14200,
+      "cruise_thrust_lbf_per_engine": 2720,
+      "engines": 2,
+      "poh_cruise_gph":     283,
+      "poh_cruise_gph_low": 266,
+      "poh_cruise_gph_high": 300,
+      "bts_block_hour_gph": 315,
+      "poh_source":         "CF34-8E TCDS E22NE + Embraer E170 FCOM",
+      "notes": "Wide-body cross-section compared to CRJ for same seat count = better passenger comfort, similar fuel."
+    },
+
+    "Embraer E175 Version 1": {
+      "aircraft_variant":   "Embraer E175 Version 1",
+      "icao_type":          "E75L",
+      "engine":             "General Electric CF34-8E5A1",
+      "engine_tsfc_cruise": 0.630,
+      "engine_rated_thrust_lbf": 14200,
+      "cruise_thrust_lbf_per_engine": 2820,
+      "engines": 2,
+      "poh_cruise_gph":     293,
+      "poh_cruise_gph_low": 275,
+      "poh_cruise_gph_high": 312,
+      "bts_block_hour_gph": 325,
+      "poh_source":         "CF34-8E TCDS E22NE + Embraer E175 FCOM (United Express scope clause aircraft)",
+      "notes": "Primary United Express regional jet; 70-seat scope-clause aircraft. E5A1 variant slightly uprated vs E5."
+    },
+
+    "Embraer E175 Version 2": {
+      "aircraft_variant":   "Embraer E175 Version 2",
+      "icao_type":          "E75L",
+      "engine":             "General Electric CF34-8E5A1",
+      "engine_tsfc_cruise": 0.630,
+      "engine_rated_thrust_lbf": 14200,
+      "cruise_thrust_lbf_per_engine": 2820,
+      "engines": 2,
+      "poh_cruise_gph":     293,
+      "poh_cruise_gph_low": 275,
+      "poh_cruise_gph_high": 312,
+      "bts_block_hour_gph": 325,
+      "poh_source":         "CF34-8E TCDS E22NE + Embraer E175 FCOM",
+      "notes": "Different seat configuration vs V1; identical fuel profile."
+    }
+  }
+}

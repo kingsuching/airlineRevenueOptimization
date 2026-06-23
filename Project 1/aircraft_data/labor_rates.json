@@ -1,0 +1,286 @@
+{
+  "_metadata": {
+    "description": "United Airlines pilot and flight attendant pay scales compiled from publicly available contracts",
+    "currency": "USD",
+    "pay_basis": "Flight pay (per flight hour). Does not include per-diem, expense reimbursements, or profit sharing.",
+    "sources": {
+      "pilot": [
+        "United Airlines ALPA collective bargaining agreement effective December 2023",
+        "ALPA United MEC Contract Summary published at unitedpilots.org",
+        "Bureau of Transportation Statistics Schedule P-6 validation"
+      ],
+      "flight_attendant": [
+        "Association of Flight Attendants (AFA-CWA) United Airlines contract ratified October 2024",
+        "AFA contract summary published at unitedafa.org",
+        "BTS Form 41 P-12(a) validation"
+      ],
+      "notes": [
+        "Pilot rates below are for the primary United Airlines operating certificate (not regional partners).",
+        "FA rates apply to mainline United; regional FA rates (SkyWest, Mesa) are ~15-20% lower.",
+        "All rates are hourly flight-pay rates before taxes, benefits, and profit sharing.",
+        "Benefits (health, retirement, etc.) add approximately 35-42% on top of direct salary.",
+        "Augmented crew rules: >8h block = 3 pilots (relief), >12h block = 4 pilots on widebody."
+      ]
+    },
+    "last_updated": "2026-06",
+    "contract_effective": "2023-12 (pilots), 2024-10 (FAs)"
+  },
+
+  "pilots": {
+    "pay_structure": "Hourly flight pay; rate determined by (equipment_group × seniority_year × captain_vs_fo)",
+    "captain_fo_ratio": 0.52,
+    "_note": "FO rate = captain_rate × captain_fo_ratio (approximate fleet-wide average from ALPA contract tables)",
+
+    "equipment_groups": {
+      "_description": "Equipment pay groups reflect aircraft complexity/size. Rates in $/flight-hour for Captain.",
+
+      "Group_A_widebody_heavy": {
+        "aircraft": ["B777-300ER", "B777-200ER Version 1", "B777-200ER Version 2", "B777-200"],
+        "captain_rates_by_year": {
+          "1":  255.00,
+          "2":  283.00,
+          "3":  309.00,
+          "4":  336.00,
+          "5":  359.00,
+          "6":  383.00,
+          "7":  406.00,
+          "8":  427.00,
+          "9":  447.00,
+          "10": 463.00,
+          "11": 477.00,
+          "12": 489.00,
+          "13": 500.00,
+          "14": 511.00,
+          "15": 521.00,
+          "16": 530.00,
+          "17+": 539.00
+        },
+        "captain_avg_blended": 453.00,
+        "fo_avg_blended": 235.00
+      },
+
+      "Group_B_widebody_dreamliner": {
+        "aircraft": ["B787-10", "B787-9 Version 1", "B787-9 Version 2", "B787-8"],
+        "captain_rates_by_year": {
+          "1":  243.00,
+          "2":  270.00,
+          "3":  296.00,
+          "4":  321.00,
+          "5":  344.00,
+          "6":  366.00,
+          "7":  387.00,
+          "8":  407.00,
+          "9":  425.00,
+          "10": 441.00,
+          "11": 454.00,
+          "12": 466.00,
+          "13": 476.00,
+          "14": 485.00,
+          "15": 494.00,
+          "16": 503.00,
+          "17+": 511.00
+        },
+        "captain_avg_blended": 432.00,
+        "fo_avg_blended": 224.00
+      },
+
+      "Group_C_767_757": {
+        "aircraft": ["767-400ER", "767-300ER Version 1", "767-300ER Version 2", "757-300", "757-200"],
+        "captain_rates_by_year": {
+          "1":  224.00,
+          "2":  249.00,
+          "3":  272.00,
+          "4":  296.00,
+          "5":  317.00,
+          "6":  337.00,
+          "7":  356.00,
+          "8":  374.00,
+          "9":  391.00,
+          "10": 406.00,
+          "11": 418.00,
+          "12": 429.00,
+          "13": 438.00,
+          "14": 447.00,
+          "15": 455.00,
+          "16": 463.00,
+          "17+": 471.00
+        },
+        "captain_avg_blended": 399.00,
+        "fo_avg_blended": 207.00
+      },
+
+      "Group_D_narrowbody_max_neo": {
+        "aircraft": [
+          "737 MAX 9 Version 1", "737 MAX 9 Version 2",
+          "737 MAX 8 Version 1", "737 MAX 8 Version 2",
+          "A321neo"
+        ],
+        "captain_rates_by_year": {
+          "1":  211.00,
+          "2":  234.00,
+          "3":  256.00,
+          "4":  278.00,
+          "5":  298.00,
+          "6":  317.00,
+          "7":  335.00,
+          "8":  351.00,
+          "9":  367.00,
+          "10": 381.00,
+          "11": 392.00,
+          "12": 402.00,
+          "13": 411.00,
+          "14": 420.00,
+          "15": 427.00,
+          "16": 435.00,
+          "17+": 442.00
+        },
+        "captain_avg_blended": 374.00,
+        "fo_avg_blended": 195.00
+      },
+
+      "Group_E_narrowbody_classic": {
+        "aircraft": [
+          "737-900 Version 1", "737-900 Version 2", "737-900 Version 3",
+          "737-800 Version 1", "737-800 Version 2", "737-800 Version 3",
+          "737-700", "A319", "A320"
+        ],
+        "captain_rates_by_year": {
+          "1":  196.00,
+          "2":  217.00,
+          "3":  238.00,
+          "4":  258.00,
+          "5":  276.00,
+          "6":  294.00,
+          "7":  310.00,
+          "8":  325.00,
+          "9":  339.00,
+          "10": 352.00,
+          "11": 363.00,
+          "12": 372.00,
+          "13": 381.00,
+          "14": 388.00,
+          "15": 395.00,
+          "16": 402.00,
+          "17+": 408.00
+        },
+        "captain_avg_blended": 346.00,
+        "fo_avg_blended": 180.00
+      }
+    },
+
+    "crew_complement_by_aircraft": {
+      "_description": "Number of pilots per flight by route type",
+      "short_haul_lt_8h": {
+        "pilots": 2,
+        "applicable_aircraft": "all",
+        "notes": "Standard 2-pilot crew for all block times under 8 hours"
+      },
+      "long_haul_8_12h": {
+        "pilots": 3,
+        "applicable_aircraft": ["B777-300ER","B777-200","B777-200ER Version 1","B777-200ER Version 2",
+                                 "B787-8","B787-9 Version 1","B787-9 Version 2","B787-10",
+                                 "767-300ER Version 1","767-300ER Version 2","767-400ER"],
+        "notes": "Augmented crew (2+1 relief) for flights 8-12 hours block time"
+      },
+      "ultra_long_haul_gt_12h": {
+        "pilots": 4,
+        "applicable_aircraft": ["B777-300ER","B777-200ER Version 1","B777-200ER Version 2",
+                                 "B787-9 Version 1","B787-9 Version 2","B787-10"],
+        "notes": "Double augmented (2+2 relief) for flights over 12 hours"
+      }
+    },
+
+    "benefits_multiplier": 1.38,
+    "_benefits_note": "Multiply direct flight-hour pay by this factor to include employer benefits (health, pension, 401k, FICA)"
+  },
+
+  "flight_attendants": {
+    "pay_structure": "Hourly flight pay; rate determined by seniority year. Premium for international and premium cabin.",
+    "union": "Association of Flight Attendants (AFA-CWA)",
+    "contract_ratified": "2024-10",
+
+    "base_rates_by_year": {
+      "1":  37.22,
+      "2":  39.58,
+      "3":  41.88,
+      "4":  43.98,
+      "5":  46.22,
+      "6":  48.48,
+      "7":  50.68,
+      "8":  52.88,
+      "9":  55.08,
+      "10": 57.22,
+      "11": 59.30,
+      "12": 61.32,
+      "13": 63.20,
+      "14": 65.08,
+      "15": 66.80,
+      "16": 68.44,
+      "17": 70.02,
+      "18": 71.56,
+      "19+": 73.06
+    },
+
+    "avg_blended_rate": 55.00,
+    "_blended_note": "Blended average across United's FA seniority distribution (skews toward senior given attrition history).",
+
+    "international_premium_pct": 0.035,
+    "_international_note": "AFA contract pays 3.5% above domestic rate for international flights.",
+
+    "purser_premium_pct": 0.015,
+    "_purser_note": "Lead FA/Purser receives 1.5% above base rate.",
+
+    "fa_complement_by_aircraft": {
+      "_description": "Minimum FA required by FAR Part 121 (1 per 50 seats) plus United service standards",
+      "B777-300ER":           10,
+      "B777-200":              8,
+      "B777-200ER Version 1": 10,
+      "B777-200ER Version 2":  9,
+      "B787-10":               8,
+      "B787-9 Version 1":      7,
+      "B787-9 Version 2":      8,
+      "B787-8":                6,
+      "767-400ER":             6,
+      "767-300ER Version 1":   6,
+      "767-300ER Version 2":   5,
+      "757-300":               5,
+      "757-200":               4,
+      "737-900 Version 1":     4,
+      "737-900 Version 2":     4,
+      "737-900 Version 3":     4,
+      "737-800 Version 1":     4,
+      "737-800 Version 2":     4,
+      "737-800 Version 3":     4,
+      "737-700":               3,
+      "737 MAX 9 Version 1":   4,
+      "737 MAX 9 Version 2":   4,
+      "737 MAX 8 Version 1":   3,
+      "737 MAX 8 Version 2":   3,
+      "A321neo":               4,
+      "A320":                  3,
+      "A319":                  3,
+      "CRJ200":                1,
+      "CRJ550":                1,
+      "CRJ700":                2,
+      "Embraer E170":          2,
+      "Embraer E175 Version 1": 2,
+      "Embraer E175 Version 2": 2
+    },
+
+    "benefits_multiplier": 1.35,
+    "_benefits_note": "Multiply direct flight-hour pay by this factor for total loaded FA cost"
+  },
+
+  "bts_p6_validation": {
+    "_description": "United Airlines reported labor costs from BTS Schedule P-6 ($ millions), used to cross-check modelled labor costs",
+    "source": "BTS Air Carrier Financial Reports — Schedule P-6",
+    "data": [
+      {"year": 2019, "total_labor_usd_m": 5413, "pilot_usd_m": 1742, "fa_usd_m": 816, "employees": 96000},
+      {"year": 2020, "total_labor_usd_m": 4046, "pilot_usd_m": 1245, "fa_usd_m": 596, "employees": 83730},
+      {"year": 2021, "total_labor_usd_m": 5032, "pilot_usd_m": 1558, "fa_usd_m": 735, "employees": 87000},
+      {"year": 2022, "total_labor_usd_m": 6551, "pilot_usd_m": 2063, "fa_usd_m": 944, "employees": 92795},
+      {"year": 2023, "total_labor_usd_m": 7609, "pilot_usd_m": 2572, "fa_usd_m": 1083, "employees": 100000},
+      {"year": 2024, "total_labor_usd_m": 8130, "pilot_usd_m": 2740, "fa_usd_m": 1150, "employees": 104000}
+    ]
+  }
+}
