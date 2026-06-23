@@ -41,8 +41,17 @@ logger = logging.getLogger(__name__)
 # ── Constants ────────────────────────────────────────────────────────────────
 DIVERGENCE_THRESHOLD = 0.10   # flag if |POH - BTS| / BTS > 10%
 
-# BTS Form 41 P-12(a) download endpoint
-_BTS_FORM41_URL  = "https://www.transtats.bts.gov/ftproot/PublicDL/ACarrier.zip"
+# BTS Form 41 P-12(a) download — try candidates in order
+_BTS_FORM41_URLS = [
+    # Current BTS bulk download (as of 2025)
+    "https://www.transtats.bts.gov/ftproot/PublicDL/Form41.zip",
+    "https://www.transtats.bts.gov/ftproot/PublicDL/AirCarrier.zip",
+    "https://www.transtats.bts.gov/ftproot/PublicDL/ACarrier.zip",       # legacy
+]
+
+# BTS TranStats custom-download form — used if bulk ZIP is unavailable
+_BTS_FORM_URL = "https://www.transtats.bts.gov/DL_SelectFields.aspx"
+_BTS_TABLE_ID = "216"   # Air Carrier Financial — Form 41 P-12(a)
 
 # Field names used in the BTS Form 41 P-12(a) CSV
 _P12A_COLUMNS = {
@@ -107,22 +116,82 @@ def download_form41(save_path: Path | None = None) -> Path:
     """
     Download the BTS Form 41 carrier financial ZIP and save to disk.
 
-    The BTS publishes a consolidated ZIP at:
-    https://www.transtats.bts.gov/ftproot/PublicDL/ACarrier.zip
+    Tries multiple BTS bulk-download URLs in sequence, then falls back to
+    BTS TranStats custom form download.
 
-    Returns the path to the extracted CSV.
+    Returns the path to the saved ZIP/CSV.
     """
     save_path = save_path or (DATA_DIR / "bts_form41_raw.zip")
-    logger.info("Downloading BTS Form 41 from %s …", _BTS_FORM41_URL)
-    resp = requests.get(_BTS_FORM41_URL, timeout=120, stream=True)
-    resp.raise_for_status()
+    headers   = {"User-Agent": "UAL-Revenue-Research/1.0 research@example.com"}
 
-    with open(save_path, "wb") as f:
-        for chunk in resp.iter_content(chunk_size=1 << 16):
-            f.write(chunk)
+    # ── Try known bulk-download ZIP URLs ─────────────────────────────────────
+    for url in _BTS_FORM41_URLS:
+        logger.info("Trying BTS bulk download: %s …", url)
+        try:
+            resp = requests.get(url, headers=headers, timeout=120, stream=True)
+            if resp.status_code == 200 and int(resp.headers.get("Content-Length", 1)) > 1000:
+                with open(save_path, "wb") as f:
+                    for chunk in resp.iter_content(chunk_size=1 << 16):
+                        f.write(chunk)
+                logger.info("Saved → %s (%d bytes)", save_path, save_path.stat().st_size)
+                return save_path
+            logger.warning("URL %s returned HTTP %s — skipping.", url, resp.status_code)
+        except requests.RequestException as exc:
+            logger.warning("URL %s failed: %s — trying next.", url, exc)
 
-    logger.info("Saved → %s (%d bytes)", save_path, save_path.stat().st_size)
-    return save_path
+    # ── Fallback: BTS TranStats form-based download ───────────────────────────
+    logger.info("Falling back to BTS TranStats form download (table %s) …", _BTS_TABLE_ID)
+    try:
+        session = requests.Session()
+        session.headers.update(headers)
+
+        # Step 1: load the download page to get the form token
+        page = session.get(
+            f"https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FHK",
+            timeout=30,
+        )
+        page.raise_for_status()
+
+        # Step 2: extract hidden form fields (ViewState etc.)
+        import re as _re
+        vs    = _re.search(r'id="__VIEWSTATE"\s+value="([^"]+)"', page.text)
+        vsg   = _re.search(r'id="__VIEWSTATEGENERATOR"\s+value="([^"]+)"', page.text)
+        ev    = _re.search(r'id="__EVENTVALIDATION"\s+value="([^"]+)"', page.text)
+
+        form_data = {
+            "__VIEWSTATE":          vs.group(1)  if vs  else "",
+            "__VIEWSTATEGENERATOR": vsg.group(1) if vsg else "",
+            "__EVENTVALIDATION":    ev.group(1)  if ev  else "",
+            "__EVENTTARGET":        "DL_URL",
+            "UserTableName":        "Form 41 Financial Data - Schedule P 12(a)",
+            "DBShortName":          "Air Carriers",
+            "RawDataForm":          "216",
+            "selectAll":            "on",
+        }
+
+        csv_save = save_path.with_suffix(".csv")
+        resp2 = session.post(
+            "https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FHK",
+            data=form_data, timeout=180, stream=True,
+        )
+        resp2.raise_for_status()
+
+        with open(csv_save, "wb") as f:
+            for chunk in resp2.iter_content(chunk_size=1 << 16):
+                f.write(chunk)
+
+        logger.info("Form download saved → %s (%d bytes)", csv_save, csv_save.stat().st_size)
+        return csv_save
+
+    except Exception as exc:
+        logger.error(
+            "All BTS Form 41 download attempts failed: %s\n"
+            "Manual download: https://www.transtats.bts.gov/databases.asp?"
+            "Z_INT_Transportaton_Mode_ID=1&Z_INT_Group_ID=3\n"
+            "Select 'Air Carrier Financial: Form 41 Schedules' → Schedule P-12(a) → Download ZIP.",
+            exc,
+        )
+        raise RuntimeError("BTS Form 41 download failed — see log for manual download URL.") from exc
 
 
 # ─────────────────────────────────────────────────────────────────────────────
